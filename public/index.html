@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+    <style>
+        /* Sets a nice font and background for the whole page */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+            margin: 0;
+        }
+
+        /* The main chat window container */
+        .chat-container {
+            width: 400px;
+            max-width: 90%;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column; /* Stacks children vertically */
+            overflow: hidden; /* Keeps border-radius */
+        }
+
+        /* Header style */
+        h1 {
+            text-align: center;
+            color: #1c1e21;
+            font-size: 1.5rem;
+            margin: 0;
+            padding: 20px;
+            border-bottom: 1px solid #dddfe2;
+        }
+
+        /* The message display area */
+        #messages {
+            padding: 20px;
+            height: 350px; /* Fixed height */
+            overflow-y: auto; /* Adds a scrollbar when content overflows */
+            flex-grow: 1; /* Allows this section to grow */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Styles for each individual message <p> tag */
+        #messages p {
+            background-color: #e9e9eb;
+            color: #050505;
+            padding: 10px 15px;
+            border-radius: 18px;
+            margin-bottom: 10px;
+            max-width: 80%;
+            word-wrap: break-word; /* Prevents long messages from overflowing */
+            align-self: flex-start; /* Aligns messages to the left */
+        }
+
+        /* Wrapper for the input field and send button */
+        .input-area {
+            display: flex; /* Aligns items side-by-side */
+            padding: 15px;
+            border-top: 1px solid #dddfe2;
+            background-color: #f9f9f9;
+        }
+
+        /* Input field styling */
+        #message {
+            flex-grow: 1; /* Takes up all available space */
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            padding: 10px 15px;
+            font-size: 1rem;
+            margin-right: 10px;
+        }
+
+        /* Removes default outline on focus */
+        #message:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        /* Send button styling */
+        #sendBtn {
+            background-color: #007bff; /* A nice blue */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+
+        /* Darker blue on hover */
+        #sendBtn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="chat-container">
+
+        <h1>Chatting</h1>
+
+        <div id="messages"></div>
+
+        <div class="input-area">
+            <input type="text" id="message" placeholder="Enter Message"/>
+            <button id="sendBtn">Send</button>
+        </div>
+
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        // --- YOUR JAVASCRIPT IS UNCHANGED ---
+        const socket=io();
+        const sendBtn=document.getElementById('sendBtn')
+        const messageInput= document.getElementById('message')
+        const allMessages=document.getElementById("messages");
+
+        socket.on("message",(message)=>{
+            const p=document.createElement('p');
+            p.innerText=message;
+            allMessages.appendChild(p);
+        });
+
+        sendBtn.addEventListener("click",(e)=>{
+            const message=messageInput.value;
+            console.log(message);
+            socket.emit('user-message',message);
+        })
+    </script>
+</body>
+</html>
