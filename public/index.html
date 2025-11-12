@@ -5,18 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat App</title>
     <style>
-        /* Sets a nice font and background for the whole page */
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: #f0f2f5;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh; /* Full viewport height */
+            height: 100vh; 
             margin: 0;
         }
 
-        /* The main chat window container */
         .chat-container {
             width: 400px;
             max-width: 90%;
@@ -24,11 +22,10 @@
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             display: flex;
-            flex-direction: column; /* Stacks children vertically */
-            overflow: hidden; /* Keeps border-radius */
+            flex-direction: column; 
+            overflow: hidden;
         }
 
-        /* Header style */
         h1 {
             text-align: center;
             color: #1c1e21;
@@ -38,17 +35,15 @@
             border-bottom: 1px solid #dddfe2;
         }
 
-        /* The message display area */
         #messages {
             padding: 20px;
-            height: 350px; /* Fixed height */
-            overflow-y: auto; /* Adds a scrollbar when content overflows */
-            flex-grow: 1; /* Allows this section to grow */
+            height: 350px; 
+            overflow-y: auto;
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
         }
 
-        /* Styles for each individual message <p> tag */
         #messages p {
             background-color: #e9e9eb;
             color: #050505;
@@ -56,21 +51,19 @@
             border-radius: 18px;
             margin-bottom: 10px;
             max-width: 80%;
-            word-wrap: break-word; /* Prevents long messages from overflowing */
-            align-self: flex-start; /* Aligns messages to the left */
+            word-wrap: break-word; 
+            align-self: flex-start;
         }
 
-        /* Wrapper for the input field and send button */
         .input-area {
-            display: flex; /* Aligns items side-by-side */
+            display: flex;
             padding: 15px;
             border-top: 1px solid #dddfe2;
             background-color: #f9f9f9;
         }
 
-        /* Input field styling */
         #message {
-            flex-grow: 1; /* Takes up all available space */
+            flex-grow: 1; 
             border: 1px solid #ccc;
             border-radius: 20px;
             padding: 10px 15px;
@@ -78,15 +71,13 @@
             margin-right: 10px;
         }
 
-        /* Removes default outline on focus */
         #message:focus {
             outline: none;
             border-color: #007bff;
         }
 
-        /* Send button styling */
         #sendBtn {
-            background-color: #007bff; /* A nice blue */
+            background-color: #007bff;
             color: white;
             border: none;
             padding: 10px 20px;
@@ -97,7 +88,6 @@
             transition: background-color 0.2s;
         }
 
-        /* Darker blue on hover */
         #sendBtn:hover {
             background-color: #0056b3;
         }
